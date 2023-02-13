@@ -51,12 +51,24 @@ async function listBookings(userId: number, roomId: number) {
     return bookingRepository.creatBooking(userId,  roomId)
 
   }
+
+  async function updateBooking(userId: number, roomId: number, bookingId: number) {
+    await listBookings(userId, roomId);
+
+    const bookings = await bookingRepository.findBookingsbyid(userId)
+
+    return bookingRepository.updateBoking(bookings.id,  roomId)
+
+  }
+
+  
     
 
 const bookingsService = {
     getBookings,
     createBooking,
-    listBookings
+    listBookings,
+    updateBooking
 }
 
 export default bookingsService;
