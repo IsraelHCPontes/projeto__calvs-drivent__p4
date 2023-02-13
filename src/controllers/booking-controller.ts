@@ -22,10 +22,11 @@ export async function listBoking(req: AuthenticatedRequest, res: Response ){
         const roomId  = Number(req.body.roomId);
 
         try{
+
             const bookings = await bookingsService.createBooking(userId, roomId)
            
-            
             return res.status(httpStatus.OK).send(bookings);
+            
         }catch(error){
             
             if (error.name === "NotFoundError"){
