@@ -8,8 +8,8 @@ export async function listBoking(req: AuthenticatedRequest, res: Response ){
 
     try{
         const bookings = await bookingsService.getBookings(userId)
-        const response = {id :bookings.id, Room: bookings.Room }
-        return res.status(httpStatus.OK).send(response);
+      
+        return res.status(httpStatus.OK).send({id :bookings.id, Room: bookings.Room });
     }catch(error){
         if (error.name === "NotFoundError"){
             return res.sendStatus(httpStatus.NOT_FOUND);
@@ -23,8 +23,8 @@ export async function listBoking(req: AuthenticatedRequest, res: Response ){
 
         try{
             const bookings = await bookingsService.createBooking(userId, roomId)
-            console.log(bookings)
-            const response = {id :bookings.id, Room: bookings.roomId }
+           
+            
             return res.status(httpStatus.OK).send(bookings);
         }catch(error){
             
